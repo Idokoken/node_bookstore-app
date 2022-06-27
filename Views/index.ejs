@@ -1,0 +1,20 @@
+<div class="row">
+  <% for( let i = 0; i < books.length; i++ ) { %>
+  <div class="col-12 col-md-3 book">
+    <img
+      src="/images/<%= books[i].cover %> "
+      class=""
+      height="200"
+      width="200"
+      alt="cover"
+    />
+    <h4><%= books[i].title %></h4>
+    <p><%= books[i].description.slice(0, 50) %></p>
+    <div class="price">Buy it at <span>$<%= books[i].price %> </span></div>
+    <br />
+    <a href="books/details/<%= books[i]._id %> " class="btn btn-primary"
+      >Book Details</a
+    >
+  </div>
+  <% } %>
+</div>

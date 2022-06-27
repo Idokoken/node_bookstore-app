@@ -1,0 +1,39 @@
+<div class="row">
+  <h2>Categories</h2>
+  <a href="/manage/categories/add">Add categories</a>
+  <table>
+    <thead>
+      <tr>
+        <th width="200">ID</th>
+        <th width="200">Categories name</th>
+        <th width="180"></th>
+        <th width="180"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% categories.map(category => {%>
+      <tr>
+        <td><%=category._id%></td>
+        <td><%= category.name %></td>
+        <td>
+          <a
+            href="/manage/categories/edit/<%= category._id %> "
+            class="btn btn-info"
+            >Edit</a
+          >
+        </td>
+        <td>
+          <form
+            action="/manage/categories/delete/<%= category._id %> "
+            method="post"
+          >
+            <input type="submit" value="delete" class="btn btn-danger" />
+            <input type="hidden" name="_csrf" value="<%= category._csrf %> " />
+            <input type="hidden" name="_method" value="DELETE " />
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

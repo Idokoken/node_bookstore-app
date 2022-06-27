@@ -1,0 +1,21 @@
+<div class="row mx-1">
+  <div class="col-12 col-md-4 details book">
+    <img src="/images/<%= book.cover %>" alt="cover" class="img-fluid" />
+  </div>
+  <div class="col-12 col-md-8 details book">
+    <h2><%= book.title %></h2>
+    <ul class="bookInfo">
+      <li>Category: <%= book.category %></li>
+      <li>Author: <%= book.author %></li>
+      <li>Publisher: <%= book.Publisher %></li>
+    </ul>
+    <br />
+    <div class="price">Buy it at <span>$<%= book.price %> </span></div>
+    <br />
+    <p><%= book.description %></p>
+    <form method="post" action="/cart/<%= book._id %> ">
+      <input type="submit" class="btn btn-primary" value="Add To Cart" />
+      <input type="hidden" name="_csrf" />
+    </form>
+  </div>
+</div>
