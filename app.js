@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const expressLayouts = require("express-ejs-layouts");
 const chalk = require("chalk");
 const morgan = require("morgan");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
@@ -12,17 +13,20 @@ const bookRouter = require("./Routes/bookRouter");
 const manageRouter = require("./Routes/manageRouter");
 const indexRouter = require("./Routes/indexRouter");
 const cartRouter = require("./Routes/cartRouter");
+require('dotenv').config()
 
+//app setup
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT;
+app.use(expressLayouts);
 
 //view setups
 app.set("view engine", "ejs");
-app.set("Views", "/Views");
+app.set("Views", "Views");
 app.set("layout", "layouts/layout");
 
 //database setup
-mongoose.connect("mongodb://localhost/BookStore", {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -33,7 +37,7 @@ db.once("open", () =>
 );
 
 //middleware setups
-app.use(expressLayouts);
+app.use(cors())
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
@@ -41,10 +45,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   "/css",
   express.static(path.join(__dirname, "node_modules/bootstrap/dist/css"))
-);
-app.use(
-  "/dist",
-  express.static(path.join(__dirname, "node_modules/jquery/dist"))
 );
 app.use(
   "/js",
