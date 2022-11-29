@@ -1,4 +1,65 @@
 footer .footer{
+	color: white;
 	background: black;
+}
+.footer .footercontainer{
 	display: flex;
+	flex-direction: column-reverse;
+	padding: 20px;
+	padding-bottom: 0;
+}
+.footer h3{
+	color: var(--primary-color);
+}
+
+.footer .fIcon, .footer .fLogo{
+  display: flex;
+}
+
+.footer .rule{
+	border: 2px solid white;
+}
+.footer .copy{
+    padding-bottom: 10px; 
+}
+.footer .icon{
+	margin-right: 10px;
+	border: 2px solid white;
+	height: 30px;
+	width: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+}
+.footer .formcontainer{
+	display: grid;
+	grid-template-columns: 60% 40%;
+	margin-top: 20px;
+	grid-gap: 0;
+	width: 70%;
+}
+.footer .formcontainer input, .footer .formcontainer button{
+	padding-left: 0;
+	padding-right: 0;
+	margin: 0;
+	border: 0;
+}
+.footer .formcontainer input{
+	padding-left: 10px;
+	border-radius: 10px 0 0 10px;
+}
+.footer .formcontainer button{
+	border-radius: 0 10px 10px 0;
+}
+
+/* for medium screen */
+@media only screen and (min-width: 768px) {
+	.footer .footercontainer{
+		flex-direction: row;
+		justify-content: space-around;
+	}
+	.footer .formcontainer{
+		width: 100%;
+	}
 }

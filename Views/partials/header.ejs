@@ -1,25 +1,66 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm sticky-top navbar-primary bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><img src="/images/brand.png" alt="brand" width="30" height="24">CipiStore</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/">
+      <img
+        src="/images/brand.png"
+        alt=""
+        width="30"
+        height="24"
+        class="d-inline-block align-text-top me-2"
+      />
+      CipiStore
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/categories">Categories</a>
+          <a class="nav-link" href="/books">All Books</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/cart">Cart</a>
+          <a class="nav-link" href="/contact">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/"
+            >Cart<i class="fa-solid h-icon fa-user"></i
+          ></a>
         </li>
       </ul>
-     
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin"
+            >Admin</i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/register"
+            ><i class="fa-solid h-icon fa-book"></i>Register</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/login"
+            ><i class="fa-solid h-icon fa-user"></i>Login</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/logout">Logout</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
-
-
-

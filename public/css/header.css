@@ -1,6 +1,22 @@
-header .bg-light{
-	background: #962A9B !important;
+.bg-light{
+    background-color: white !important;
+    /* background-image: linear-gradient(to right, blue, rgb(155, 170, 240), blue) !important; */
+    box-shadow: 5px 5px 5px 5px #eee6e6;
+    
 }
-header .nav-link{
-	color: white !important;
+.nav-link, .navbar-brand{
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.nav-link:hover{
+color: rgb(177, 211, 84);
+}
+.h-icon{
+padding-right: 5px;
+}
+
+/* for medium screen */
+@media only screen and (min-width: 768px) {
+   
+
 }

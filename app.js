@@ -9,11 +9,13 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
-const bookRouter = require("./Routes/bookRouter");
-const manageRouter = require("./Routes/manageRouter");
+const authRouter = require("./Routes/authRouter");
 const indexRouter = require("./Routes/indexRouter");
+const bookRouter = require("./Routes/bookRouter");
+const categoryRouter = require("./Routes/categoryRouter");
 const cartRouter = require("./Routes/cartRouter");
-require('dotenv').config()
+
+require("dotenv").config();
 
 //app setup
 const app = express();
@@ -26,18 +28,21 @@ app.set("Views", "Views");
 app.set("layout", "layouts/layout");
 
 //database setup
-mongoose.connect(process.env.MONGO_URI, {
+//mongodb://localhost/Cipistore
+mongoose.connect("mongodb://localhost/Cipistore", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 const db = mongoose.connection;
-db.on("error", () => console.log("error connecting to BookStore database"));
+db.on("error", () => console.log("error connecting to cipiStore database"));
 db.once("open", () =>
-  console.log(`successfully connected to ${chalk.blue("BookStore database")}`)
+  console.log(
+    `successfully connected to ${chalk.magenta("cipiStore database")}`
+  )
 );
 
 //middleware setups
-app.use(cors())
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
@@ -59,11 +64,13 @@ app.use(function (req, res, next) {
   res.locals.messages = require("express-messages")(req, res);
   next();
 });
+global.moment = require("moment");
 
 //route setups
 app.use("/", indexRouter);
+app.use("/auth", authRouter);
 app.use("/books", bookRouter);
-app.use("/manage", manageRouter);
+app.use("/category", categoryRouter);
 app.use("/cart", cartRouter);
 
-app.listen(port, () => console.log("listening on port " + chalk.blue(8000)));
+app.listen(port, () => console.log("listening on port " + chalk.magenta(8000)));
