@@ -8,9 +8,17 @@ const bookRouter = express.Router();
 
 //get all books for books page
 bookRouter.get("/", async (req, res) => {
+  //cart items
+  let cookieValue = req.cookies;
+  let cookieArray;
+  if (cookieValue.cart) {
+    cookieArray = JSON.parse(cookieValue.cart);
+  } else {
+    cookieArray = [];
+  }
   try {
     let books = await Books.find();
-    res.render("pages/books", { books: Data });
+    res.render("pages/books", { books: Data, cartNumb: cookieArray.length });
     console.log("books");
   } catch (err) {
     res.status(500).json(err);
@@ -21,9 +29,17 @@ bookRouter.get("/", async (req, res) => {
 bookRouter
   .route("/create")
   .get(async (req, res) => {
+    //cart items
+    let cookieValue = req.cookies;
+    let cookieArray;
+    if (cookieValue.cart) {
+      cookieArray = JSON.parse(cookieValue.cart);
+    } else {
+      cookieArray = [];
+    }
     try {
       const category = await Category.find();
-      res.render("manage/book/add", { category });
+      res.render("manage/book/add", { category, cartNumb: cookieArray.length });
     } catch (error) {
       res.status(500).json(error);
     }
@@ -67,14 +83,23 @@ bookRouter
 
 //get single book
 bookRouter.get("/:id", async (req, res) => {
+  //cart items
+  let cookieValue = req.cookies;
+  let cookieArray;
+  if (cookieValue.cart) {
+    cookieArray = JSON.parse(cookieValue.cart);
+  } else {
+    cookieArray = [];
+  }
+
   const { id } = req.params;
   try {
     const data = Data.filter((book, i) => book._id == id).map((a) =>
-      res.render("pages/singlebook", { book: a })
+      res.render("pages/singlebook", { book: a, cartNumb: cookieArray.length })
     );
     // console.log(data);
     //const book = await Books.findById(req.params.id);
-    //res.render("pages/singlebook", { book: data });
+    //res.render("pages/singlebook", { book: data, cartNumb: cookieArray.length  });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -84,10 +109,23 @@ bookRouter.get("/:id", async (req, res) => {
 bookRouter
   .route("/update/:id")
   .get(async (req, res) => {
+    //cart items
+    let cookieValue = req.cookies;
+    let cookieArray;
+    if (cookieValue.cart) {
+      cookieArray = JSON.parse(cookieValue.cart);
+    } else {
+      cookieArray = [];
+    }
+
     try {
       const category = await Category.find();
       const book = await Books.findById(req.params.id);
-      res.render("manage/book/edit", { book, category });
+      res.render("manage/book/edit", {
+        book,
+        category,
+        cartNumb: cookieArray.length,
+      });
     } catch (error) {
       res.status(500).json({ error });
     }

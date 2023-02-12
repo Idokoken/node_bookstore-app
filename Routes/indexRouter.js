@@ -7,9 +7,17 @@ const indexRouter = express.Router();
 
 //home Page
 indexRouter.get("/", async (req, res) => {
+  //cart items
+  let cookieValue = req.cookies;
+  let cookieArray;
+  if (cookieValue.cart) {
+    cookieArray = JSON.parse(cookieValue.cart);
+  } else {
+    cookieArray = [];
+  }
   try {
     const books = await Books.find();
-    res.render("pages/home", { books });
+    res.render("pages/home", { books, cartNumb: cookieArray.length });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -28,13 +36,22 @@ indexRouter.get("/admin", async (req, res) => {
 
 //About page
 indexRouter.get("/about", (req, res) => {
-  res.render("pages/about");
+  //cart items
+  let cookieValue = req.cookies;
+  let cookieArray;
+  if (cookieValue.cart) {
+    cookieArray = JSON.parse(cookieValue.cart);
+  } else {
+    cookieArray = [];
+  }
+  res.render("pages/about", { cartNumb: cookieArray.length });
 });
 
 // contact page
 indexRouter
   .route("/contact")
   .get((req, res) => {
+    //cart items
     let cookieValue = req.cookies;
     let cookieArray;
     if (cookieValue.cart) {
@@ -42,7 +59,7 @@ indexRouter
     } else {
       cookieArray = [];
     }
-    res.render("pages/contact", { cartNum: cookieArray.length });
+    res.render("pages/contact", { cartNumb: cookieArray.length });
   })
   .post(async (req, res) => {
     //const { name, email, subject, comment } = req.body;
