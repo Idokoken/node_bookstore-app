@@ -1,0 +1,118 @@
+<div class="container-fluid py-4 my-0">
+  <div class="container">
+    <h1 class="text-darks">Add Book</h1>
+    <form action="/books/create" method="post" enctype="multipart/form-data">
+      <div class="form-group mb-3">
+        <label class="mb-1" for="title">Title</label>
+        <input
+          type="text"
+          name="title"
+          placeholder="title"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label class="mb-1" for="author">Author</label>
+        <input
+          type="text"
+          name="author"
+          placeholder="author"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label class="mb-1" for="publisher">Publisher</label>
+        <input
+          type="text"
+          name="publisher"
+          placeholder="publisher"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label class="mb-1" for="price">Price</label>
+        <input
+          type="number"
+          name="price"
+          placeholder="price"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="mb-1" for="category">Category</label>
+        <select name="category" id="category" class="form-control">
+          <% for(let i = 0; i < category.length; i++) {%>
+          <option value="<%=category[i].name%>"><%=category[i].name%></option>
+          <% }%>
+        </select>
+      </div>
+      <div class="form-group mb-3">
+        <label class="mb-1" for="label">Description</label>
+        <textarea
+          class="form-control"
+          placeholder="description"
+          name="description"
+          rows="5"
+        ></textarea>
+      </div>
+      <div class="form-group mb-3">
+        <label class="mb-1" for="cover">Book cover</label>
+        <input
+          type="file"
+          name="cover"
+          placeholder="cover"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label class="mb-1" for="cover">Book images</label>
+        <input
+          type="file"
+          name="images"
+          placeholder="images"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label class="mb-1" for="price">CountInStock</label>
+        <input
+          type="number"
+          name="countInStock"
+          placeholder="countInStock"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label class="mb-1" for="price">Rating</label>
+        <input
+          type="number"
+          name="rating"
+          placeholder="rating"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label class="mb-1" for="price">Num of Reviews</label>
+        <input
+          type="number"
+          name="numOfReviews"
+          placeholder="reviews"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label class="mb-1" for="price">isFeatured</label>
+        <input
+          type="text"
+          name="isFeatured"
+          placeholder="isFeatured"
+          class="form-control"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-info text-light mt-3">Submit</button>
+    </form>
+    <a href="/admin" class="btn btn-danger mt-4">Close</a>
+  </div>
+</div>

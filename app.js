@@ -9,11 +9,11 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
-const authRouter = require("./Routes/authRouter");
-const indexRouter = require("./Routes/indexRouter");
-const bookRouter = require("./Routes/bookRouter");
-const categoryRouter = require("./Routes/categoryRouter");
-const cartRouter = require("./Routes/cartRouter");
+const authRouter = require("./routes/authRouter");
+const indexRouter = require("./routes/indexRouter");
+const bookRouter = require("./routes/bookRouter");
+const categoryRouter = require("./routes/categoryRouter");
+const cartRouter = require("./routes/cartRouter");
 
 require("dotenv").config();
 
@@ -24,12 +24,11 @@ app.use(expressLayouts);
 
 //view setups
 app.set("view engine", "ejs");
-app.set("Views", "Views");
+app.set("views", "views");
 app.set("layout", "layouts/layout");
 
 //database setup
-//mongodb://localhost/Cipistore
-mongoose.connect("mongodb://localhost/Cipistore", {
+mongoose.connect(process.env.MONGO_URI2, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -54,6 +53,10 @@ app.use(
 app.use(
   "/js",
   express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
+);
+app.use(
+  "/dist",
+  express.static(path.join(__dirname, "node_modules/jquery/dist"))
 );
 app.use(cookieParser());
 app.use(

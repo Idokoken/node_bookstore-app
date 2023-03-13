@@ -7,12 +7,14 @@
 .nav-link, .navbar-brand{
   color: var(--primary-color);
   font-weight: 600;
+  font-family: 'Times New Roman', Times, serif;
+  /* font-size: 18px; */
 }
 .nav-link:hover{
-color: rgb(177, 211, 84);
+color: rgb(190, 60, 132);
 }
 .h-icon{
-padding-right: 5px;
+margin-left: 3px;
 }
 
 /* for medium screen */

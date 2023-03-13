@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 var categoryModel = new Schema(
   {
     name: { type: String, required: true },
+    icon: { type: String },
   },
   { timestamps: true }
 );

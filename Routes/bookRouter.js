@@ -1,8 +1,9 @@
 const express = require("express");
 const Books = require("../models/bookModel");
 const Category = require("../models/categoryModel");
-const { upload } = require("../src/upload.cloudnary");
-const Data = require("../src/data");
+const { upload } = require("../config/upload.cloudnary");
+const { uploadOptions } = require("../config/upload.diskStorage");
+const Data = require("../config/data");
 
 const bookRouter = express.Router();
 
@@ -39,45 +40,59 @@ bookRouter
     }
     try {
       const category = await Category.find();
-      res.render("manage/book/add", { category, cartNumb: cookieArray.length });
+      res.render("admin/book/add", { category, cartNumb: cookieArray.length });
     } catch (error) {
       res.status(500).json(error);
     }
   })
-  .post(upload.single("cover"), async (req, res) => {
-    const { title, publisher, price, description, author, category } = req.body;
+  .post(uploadOptions.single("cover"), async (req, res) => {
+    const {
+      title,
+      author,
+      publisher,
+      price,
+      category,
+      description,
+      countInStock,
+      rating,
+      numOfReviews,
+      isFeatured,
+    } = req.body;
 
-    //console.log({ title, description, author, category, cover });
+    // for file upload
+    const fileName = req.file.filename;
+    //http://localhost:8000/public/uploads/image-4573.png
+    const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
+    const cover = `${basePath}${fileName}`;
+
+    if (!title || !description || !cover || !price || !category) {
+      req.flash("error", "All compulsory fields are required");
+      res.render("admin/book/add");
+      // res.send("all compulsory fields are required");
+    }
 
     try {
-      if (!title || !description || !req.file) {
-        req.flash("error", "All compulsory fields are required");
-        res.redirect("/books/create");
-      }
-      const cover = req.file.path;
-      console.log({
-        title,
-        publisher,
-        price,
-        description,
-        author,
-        category,
-        cover,
-      });
       const newBook = new Books({
         title,
+        author,
         publisher,
         price,
-        description,
-        author,
         category,
+        description,
         cover,
+        countInStock,
+        rating,
+        numOfReviews,
+        isFeatured,
       });
-      const book = await newBook.save();
+      const books = await newBook.save();
       req.flash("info", "book successfully created");
       res.redirect("/admin");
+      res.status(200).json(books);
     } catch (err) {
-      res.status(500).json(err);
+      req.flash("error", "error creating books");
+      res.redirect("/books/create");
+      // res.status(500).json(err);
     }
   });
 

@@ -5,7 +5,7 @@
         src="/images/brand.png"
         alt=""
         width="30"
-        height="24"
+        height="30"
         class="d-inline-block align-text-top me-2"
       />
       CipiStore
@@ -23,11 +23,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/books">All Books</a>
+          <a class="nav-link" href="/books">Books</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/contact">Contact Us</a>
@@ -37,7 +35,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/cart"
-            >Cart<i class="fa-solid h-icon fa-cart"><em> <% if (cartNumb != 0) { %> <%= cartNumb %> <% } %> </em></i
+            >Cart<i class="fa-solid h-icon fa-cart-shopping">
+              </i
           ></a>    
         </li>
       </ul>
@@ -49,12 +48,12 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/auth/register"
-            ><i class="fa-solid h-icon fa-book"></i>Register</a
+            >Register</a
           >
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/auth/login"
-            ><i class="fa-solid h-icon fa-user"></i>Login</a
+            >Login</a
           >
         </li>
         <li class="nav-item">
@@ -64,3 +63,5 @@
     </div>
   </div>
 </nav>
+
+

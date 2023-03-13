@@ -25,10 +25,21 @@ indexRouter.get("/", async (req, res) => {
 
 // admin home page
 indexRouter.get("/admin", async (req, res) => {
+  let cookieValue = req.cookies;
+  let cookieArray;
+  if (cookieValue.cart) {
+    cookieArray = JSON.parse(cookieValue.cart);
+  } else {
+    cookieArray = [];
+  }
   try {
     const category = await Category.find();
     const books = await Books.find();
-    res.render("manage/index", { books, category });
+    res.render("admin/index", {
+      books,
+      category,
+      cartNumb: cookieArray.length,
+    });
   } catch (error) {
     res.status(500).json(error);
   }

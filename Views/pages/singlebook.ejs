@@ -11,7 +11,7 @@
         <li>Publisher: <%= book.publisher %></li>
       </ul>
       <br />
-      <div class="price mb-3 ms-3"><span>$<%= book.price %> </span></div>
+      <div class="price mb-3"><span>$<%= book.price %> </span></div>
       <div class="buy">
         <form method="post" action="/cart/<%= book._id %> ">
           <input
@@ -23,8 +23,11 @@
         </form>
         <input type="text" class="btn btn-dark buynow" value="Buy now" />
       </div>
-      <br />
-      <p><%= book.description %></p>
+      
+    </div>
+    <br />
+    <div class="container my-3">
+      <p class="desc"><%= book.description %></p>
     </div>
   </div>
   <div class="related m-4">
