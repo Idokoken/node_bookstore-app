@@ -1,6 +1,6 @@
 <div class="singlebook">
-  <div class="row mx-1 py-3">
-    <div class="col-12 col-md-5 details book">
+  <div class="row mx-1 py-3 main">
+    <div class="col-12 col-md-5 details book img-container">
       <img src="<%= book.cover %>" alt="cover" class="img-fluid" />
     </div>
     <div class="col-12 col-md-7 details book">
@@ -14,16 +14,11 @@
       <div class="price mb-3"><span>$<%= book.price %> </span></div>
       <div class="buy">
         <form method="post" action="/cart/<%= book._id %> ">
-          <input
-            type="submit"
-            class="btn btn-primary addtocart"
-            value="Add To Cart"
-          />
+          <input type="submit" class="btn addtocart" value="Add To Cart" />
           <input type="hidden" name="_csrf" />
         </form>
         <input type="text" class="btn btn-dark buynow" value="Buy now" />
       </div>
-      
     </div>
     <br />
     <div class="container my-3">
@@ -31,30 +26,21 @@
     </div>
   </div>
   <div class="related m-4">
-    
+    <h3>You may also like some of these books</h3>
+    <div>related books</div>
+    <div class="itemscontainer">
+      <% for( let i = 0; i < books.length; i++ ) { %>
       <div class="item">
-        <a href="/books/" class="name">
-          <img src="" class="" alt="cover" />
-          <h5>title</h5>
+        <a href="/books/<%= books[i]._id %>" class="name">
+          <div class="img-container">
+            <img src="<%= books[i].cover %> " class="" alt="cover" />
+          </div>
         </a>
-        <p class="price">price </span></p>
-        <a href="/cart" class="btn btn-primary">Add to Cart</a>
+        <h5 class="my-2"><%= books[i].title %></h5>
+        <p class="price">$<%= books[i].price %></p>
+        <a href="/cart" class="btn add">Add to Cart</a>
       </div>
-      <div class="item">
-        <a href="/books/" class="name">
-          <img src="" class="" alt="cover" />
-          <h5>title</h5>
-        </a>
-        <p class="price">price </span></p>
-        <a href="/cart" class="btn btn-primary">Add to Cart</a>
-      </div>
-      <div class="item">
-        <a href="/books/" class="name">
-          <img src="" class="" alt="cover" />
-          <h5>title</h5>
-        </a>
-        <p class="price">price </span></p>
-        <a href="/cart" class="btn btn-primary">Add to Cart</a>
-      </div>
+      <% } %>
+    </div>
   </div>
 </div>

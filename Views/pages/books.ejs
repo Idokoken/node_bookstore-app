@@ -1,5 +1,5 @@
 <div class="container-fluid books">
-  <h2>All Books page</h2>
+  <h2 class="mb-3">All Books</h2>
   <div class="itemscontainer">
     <% for( let i = 0; i < books.length; i++ ) { %>
     <div class="item">
@@ -8,9 +8,9 @@
           <img src="<%= books[i].cover %> " class="" alt="cover" />
         </div>
       </a>
-      <h5><%= books[i].title %></h5>
-      <p class="price">Buy it at <span>$<%= books[i].price %> </span></p>
-      <a href="/cart" class="btn btn-primary">Add to Cart</a>
+      <h5 class="my-2"><%= books[i].title %></h5>
+      <p class="price">$<%= books[i].price %></p>
+      <a href="/cart" class="btn add">Add to Cart</a>
     </div>
     <% } %>
   </div>

@@ -7,7 +7,7 @@ const Data = require("../config/data");
 
 const bookRouter = express.Router();
 
-//get all books for books page
+//get all books for books/products page
 bookRouter.get("/", async (req, res) => {
   //cart items
   let cookieValue = req.cookies;
@@ -19,7 +19,7 @@ bookRouter.get("/", async (req, res) => {
   }
   try {
     let books = await Books.find();
-    res.render("pages/books", { books: Data, cartNumb: cookieArray.length });
+    res.render("pages/books", { books, cartNumb: cookieArray.length });
     console.log("books");
   } catch (err) {
     res.status(500).json(err);
@@ -63,9 +63,8 @@ bookRouter
     const fileName = req.file.filename;
     //http://localhost:8000/public/uploads/image-4573.png
     const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
-    const cover = `${basePath}${fileName}`;
 
-    if (!title || !description || !cover || !price || !category) {
+    if (!title || !description || !price || !category) {
       req.flash("error", "All compulsory fields are required");
       res.render("admin/book/add");
       // res.send("all compulsory fields are required");
@@ -79,7 +78,7 @@ bookRouter
         price,
         category,
         description,
-        cover,
+        cover: `${basePath}${fileName}`,
         countInStock,
         rating,
         numOfReviews,
@@ -110,7 +109,11 @@ bookRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const data = Data.filter((book, i) => book._id == id).map((a) =>
-      res.render("pages/singlebook", { book: a, cartNumb: cookieArray.length })
+      res.render("pages/singlebook", {
+        book: a,
+        cartNumb: cookieArray.length,
+        books: Data,
+      })
     );
     // console.log(data);
     //const book = await Books.findById(req.params.id);

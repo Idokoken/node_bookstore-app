@@ -1,66 +1,68 @@
-<header>
-  <div class="navigation">
-    <div class="navlink">
-      <a href="products">Home</a>
+<div class="contact container-fluid">
+  <div class="welcome">
+    <h6>Home <i class="fa-solid fa-arrow-right"></i> Contact</h6>
+    <h4>We care about Customer's satisfaction</h4>
+    <p>And always take care of any problem they may be expiriencing</p>
+  </div>
+  <div class="address">
+    <div>
+      <span>Tel:</span>
+      <p>+2347047584474</p>
     </div>
-    <div class="navlink">
-      <a href="/colors">Colors</a>
+    <div>
+      <span>Email:</span>
+      <p>cipistore.ng@yahoo.com</p>
     </div>
-    <div class="navlink">
-      <a href="/cart"
-        >Cart<em> <% if (cartNumb != 0) { %> <%= cartNumb %> <% } %> </em></a
-      >
-    </div>
-    <div class="navlink">
-      <a href="/contact">Contact</a>
+    <div>
+      <span>Office Address:</span>
+      <p>NO 41 Adelabu Steet, Oppsite Federal Secretariat, Abuja, Nigeria</p>
     </div>
   </div>
-</header>
-
-<div class="contact container">
-  <h1>Contact Us</h1>
-  <form action="/contact" method="post">
-    <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
-      <input
-        type="text"
-        name="name"
-        class="form-control"
-        id="name"
-        placeholder="enter name here"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email address</label>
-      <input
-        type="email"
-        name="email"
-        class="form-control"
-        id="email"
-        placeholder="enter email here"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="subject" class="form-label">Subject</label>
-      <input
-        type="text"
-        name="subject"
-        class="form-control"
-        id="subject"
-        placeholder="enter subject here"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="comment" class="form-label">Comment</label>
-      <textarea
-        class="form-control"
-        id="comment"
-        name="comment"
-        rows="3"
-      ></textarea>
-    </div>
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-3">Submit</button>
-    </div>
-  </form>
+  <div class="container">
+    <h1>Contact Us</h1>
+    <form action="/contact" method="post">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          id="name"
+          placeholder="enter name here"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          id="email"
+          placeholder="enter email here"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="subject" class="form-label">Subject</label>
+        <input
+          type="text"
+          name="subject"
+          class="form-control"
+          id="subject"
+          placeholder="enter subject here"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="comment" class="form-label">Comment</label>
+        <textarea
+          class="form-control"
+          id="comment"
+          name="comment"
+          rows="3"
+        ></textarea>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+      </div>
+    </form>
+  </div>
 </div>

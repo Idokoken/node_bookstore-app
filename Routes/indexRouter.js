@@ -2,6 +2,7 @@ const express = require("express");
 const Books = require("../models/bookModel");
 const Category = require("../models/categoryModel");
 const Contact = require("../models/contactModel");
+const Data = require("../config/data");
 
 const indexRouter = express.Router();
 
@@ -73,15 +74,19 @@ indexRouter
     res.render("pages/contact", { cartNumb: cookieArray.length });
   })
   .post(async (req, res) => {
-    //const { name, email, subject, comment } = req.body;
-
+    const { name, email, subject, comment } = req.body;
+    if (!name || !email || !subject || !comment) {
+      res.render("pages/contact", { message: "all fields are required" });
+    }
     try {
-      const newContact = await new Contact(req.body);
+      const newContact = await new Contact({ name, email, subject, comment });
       const Contact = await newContact.save();
-      console.log(newContact);
+      // console.log(newContact);
+      req.flash("info", "message successfully sent");
       res.redirect("/contact");
     } catch (error) {
-      res.status(500).json(error);
+      req.flash("error", "error sending message");
+      res.render("pages/contact");
     }
   });
 
